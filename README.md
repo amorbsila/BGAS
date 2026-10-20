@@ -1,34 +1,105 @@
-# Bsila Golden ADN Sequence (BGAS)
+# BGAS — Reconstruction numérique en base de Pell
 
-**Author:** Amor Bsila
+**Auteur : Amor Bsila**
 
-## Overview
+## 1. Présentation du projet
 
-Bsila Golden ADN Sequence (BGAS) is a mathematical framework for exploring numerical structures, binary addresses, recurrence sequences, and the reconstruction of integers from binary motifs.
+Ce projet étudie le système BGAS de reconstruction numérique dans la base
 
-The project investigates the relationships between numerical bases, rounding operations, recurrent sequences, and the structural organization of integers.
+\[
+\rho=1+\sqrt{2},
+\qquad
+\bar{\rho}=1-\sqrt{2}.
+\]
 
-## Research Topics
+L'objectif est d'examiner les relations entre les codes binaires BGAS, les nombres de Pell, les nombres de Pell–Lucas et certaines structures arithmétiques associées.
 
-- BGAS binary addressing and integer reconstruction
-- BNodes and numerical intervals
-- Pell sequences and the quadratic base \(1+\sqrt{2}\)
-- Fibonacci, Tribonacci, and Padovan-related structures
-- PLAST sequences and recurrence relations
-- Python implementations, verification tests, and experimental observations
+Le travail associe des formules mathématiques, des algorithmes Python et des vérifications numériques reproductibles.
 
-## Computational Tools
+## 2. Principe de reconstruction BGAS
 
-The project uses Python to implement BGAS algorithms, verify mathematical identities, and explore numerical patterns.
+Pour un mot binaire \(w=(w_1,\ldots,w_k)\), la reconstruction `BGASINV` part de \(u_0=1\) et applique successivement
 
-The original code and its conventions are to be preserved and documented carefully.
+\[
+u_j=\operatorname{round}(\rho u_{j-1})+w_j,
+\]
 
-## Research Status
+où l'arrondi est effectué à l'entier le plus proche, avec la convention *ROUND_HALF_UP*.
 
-This repository documents the development of BGAS, including definitions, mathematical results, computational experiments, and conjectures awaiting proof.
+L'étude porte notamment sur les mots constitués de zéros, de uns et sur des motifs binaires particuliers.
 
-Computational observations are distinguished from formally established results.
+## 3. Relations avec les suites de Pell
 
-## Citation and Contact
+Les nombres de Pell sont définis par
 
-For questions about the mathematical framework or the contents of this repository, please contact the author through the contact information provided in the author's GitHub profile.
+\[
+P_0=0,\quad P_1=1,\quad
+P_n=2P_{n-1}+P_{n-2}.
+\]
+
+Leurs premiers termes sont
+
+\[
+0,1,2,5,12,29,70,169,\ldots
+\]
+
+Les nombres de Pell–Lucas sont étudiés à travers les deux suites
+
+\[
+H_n=\frac{\rho^n+\bar{\rho}^{\,n}}{2},
+\qquad Q_n=2H_n.
+\]
+
+Les relations BGAS examinées comprennent notamment :
+
+\[
+\operatorname{BGASINV}(0^\ell)=P_{\ell+1},
+\]
+
+\[
+\operatorname{BGASINV}(10^{\ell-2})=H_\ell,
+\]
+
+\[
+\operatorname{BGASINV}(010^{\ell-2})=Q_\ell.
+\]
+
+Ces relations sont étudiées avec leurs conventions d'indices et les conditions indiquées dans la note mathématique.
+
+## 4. Contenu du dépôt
+
+- **`bgas_outils.py`** — outils Python utilisés pour les calculs BGAS.
+- **`verif_pell.py`** — programme de vérification des formules et des relations étudiées.
+- **`note_pell.tex`** — note mathématique présentant les définitions, formules, motifs et observations de l'étude.
+
+## 5. Exécuter les vérifications
+
+Placer les fichiers Python dans le même répertoire, puis exécuter :
+
+```bash
+python3 verif_pell.py
+```
+
+Le script importe `bgas_outils.py` et effectue les tests prévus dans le programme.
+
+Les résultats dépendent des tests effectivement présents dans la version du script utilisée. Une vérification numérique sur un ensemble fini d'indices ne constitue pas, à elle seule, une démonstration générale.
+
+## 6. Démarche scientifique
+
+Le projet distingue trois niveaux :
+
+1. **Identités mathématiques** : relations établies par une démonstration.
+2. **Vérifications numériques** : égalités contrôlées par le programme sur des plages d'indices données.
+3. **Conjectures et observations structurelles** : phénomènes observés qui demandent encore une preuve générale.
+
+Cette distinction est particulièrement importante dans l'étude des motifs BGAS, des fibres de codes, des intervalles de Pell et des structures associées aux nombres de Pell–Lucas.
+
+## 7. Reproductibilité et évolution
+
+Les scripts permettent de reproduire les calculs à partir des fichiers publiés. Les modifications et les nouveaux résultats doivent être accompagnés, autant que possible, des tests correspondants.
+
+Le dépôt a vocation à conserver une trace du développement de l'étude : définitions, résultats, vérifications et questions encore ouvertes.
+
+## 8. Licence
+
+Aucune licence de réutilisation n'est déclarée dans cette version. Les conditions de réutilisation pourront être précisées séparément par l'auteur.
