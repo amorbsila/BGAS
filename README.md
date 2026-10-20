@@ -1,3 +1,6 @@
+**Zenodo DOI:** [10.5281/zenodo.23518746](https://doi.org/10.5281/zenodo.23518746)
+
+**Archived release:** [v1.0.1](https://github.com/amorbsila/BGAS/releases/tag/v1.0.1)
 # BGAS — Reconstruction numérique en base de Pell
 
 **Auteur : Amor Bsila**
